@@ -1,0 +1,12 @@
+{
+  "extends": "@tsukuru/typescript-config/react-library.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@tsukuru/ui/*": ["./src/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
