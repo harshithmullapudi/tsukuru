@@ -3,11 +3,13 @@ import { promises as fs } from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
 import { serialize } from 'next-mdx-remote/serialize';
 
+const triggerConfigPath = process.env.TRIGGER_CONFIG_PATH ?? process.cwd();
+
 export async function GET(req: NextRequest) {
   const fileName = req.nextUrl.searchParams.get('fileName');
 
   // Construct the file path
-  const filePath = path.join(process.cwd(), `./${fileName}`);
+  const filePath = path.join(triggerConfigPath, `./${fileName}`);
 
   try {
     // Read the file
