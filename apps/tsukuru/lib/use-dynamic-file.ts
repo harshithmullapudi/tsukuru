@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 export const useDynamicFile = (fileName: string) => {
   const [data, setData] = useState<any>(null);
+  const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -13,8 +14,10 @@ export const useDynamicFile = (fileName: string) => {
         }
         const json = await res.json();
         setData(json);
-      } catch (error) {
+      } catch (error: any) {
         console.error(error);
+
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -23,5 +26,5 @@ export const useDynamicFile = (fileName: string) => {
     fetchData();
   }, [fileName]);
 
-  return { data, loading };
+  return { data, loading, error };
 };

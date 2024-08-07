@@ -2,17 +2,20 @@
 
 import { TsukuruConfigContext } from '@/components/config-provider';
 import { TsukuruConfigType } from '@/components/type';
-import { MDXContent } from '@/components/ui/mdx-content';
-import { useMDXComponents } from '@/mdx-components';
+import { Loader } from '@/components/ui/loader';
+import { useRouter } from 'next/router';
+import React from 'react';
 import { useContext } from 'react';
 
 export default function Home() {
   const tsukuruConfig = useContext(TsukuruConfigContext) as TsukuruConfigType;
-  const tab = tsukuruConfig.tabs.find((tab) => tab.path === '/');
+  const router = useRouter();
+  const group = tsukuruConfig.navigation[0];
 
-  return (
-    <div>
-      <MDXContent fileName={tab?.content as string} />
-    </div>
-  );
+  React.useEffect(() => {
+    const route = group.pages[0];
+    router.push(route);
+  }, []);
+
+  return <Loader />;
 }

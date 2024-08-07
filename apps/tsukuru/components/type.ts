@@ -1,13 +1,12 @@
 export interface Tab {
-  name: string;
-  content: string;
-  path: string;
+  group: string;
+  pages: string[];
 }
 
 export interface TsukuruConfigType {
   name: string;
   description: string;
-  tabs: Array<Tab>;
+  navigation: Array<Tab>;
   socials: {
     github?: string;
   };
